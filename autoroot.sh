@@ -90,7 +90,7 @@ add_exit_trap() {
 
 create_lockfile() {
     lockfile="${1}"
-    exec 200>"${lockfile}"
+    eval exec '200>'"${lockfile}"
 
     flock -x -n -- 200 || { echo '[!] Another instance of this script is currently running'; exit 2; }
 
